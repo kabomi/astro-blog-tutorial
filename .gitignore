@@ -1,3 +1,6 @@
+# Astro hidden files
+/.astro
+
 # Logs
 logs
 *.log
