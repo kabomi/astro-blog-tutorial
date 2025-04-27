@@ -1,0 +1,45 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import '../../styles/global.css';
+const pageTitle = "Blog Tags";
+const allTags = (await getCollection("blog"))
+  .map((post) => post.data.tags)
+  .flat()
+  .filter((tag: string, index: number, self: string[]) => self.indexOf(tag) === index);
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <p>This are the tags used in all posts.</p>
+  <div class="tags">
+    {
+      allTags.length === 0 ? <p>No tags found</p> :
+      allTags.map((tag: string) => {
+        return (
+          <p class="tag">
+            <a href={`/tags/${tag}`}>{tag.toUpperCase()}</a>
+          </p>
+        );
+      })
+    }
+  </div>
+</BaseLayout>
+<style>
+  a {
+    color: #00539F;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    margin: 0.25em;
+    border: dotted 1px #a1a1a1;
+    border-radius: .5em;
+    padding: .5em 1em;
+    font-size: 1.15em;
+    background-color: #F8FCFD;
+  }
+</style>
