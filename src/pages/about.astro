@@ -1,6 +1,6 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import '../styles/global.css';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import "../styles/global.css";
 const pageTitle = "About Harry Potter";
 const identity = {
   firstName: "Harry",
@@ -19,7 +19,7 @@ const textCase = "uppercase";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <style define:vars={{skillColor, fontWeight, textCase}}>
+  <style define:vars={{ skillColor, fontWeight, textCase }}>
     h1 {
       color: purple;
       font-size: 4rem;
@@ -34,8 +34,12 @@ const textCase = "uppercase";
   <ul>
     <li>My name is {identity.firstName}.</li>
     <li>I live in {identity.country} and I work as a {identity.occupation}.</li>
-    {identity.hobbies.length >= 2 &&
-      <li>Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}</li>
+    {
+      identity.hobbies.length >= 2 && (
+        <li>
+          Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}
+        </li>
+      )
     }
   </ul>
   <p>My skills are:</p>
@@ -46,5 +50,11 @@ const textCase = "uppercase";
 
   {finished && <p>I finished this tutorial!</p>}
 
-  {goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
+  {
+    goal === 3 ? (
+      <p>My goal is to finish in 3 days.</p>
+    ) : (
+      <p>My goal is not 3 days.</p>
+    )
+  }
 </BaseLayout>
