@@ -1,11 +1,19 @@
 ---
+import { isLogged, loggedUsername } from "../store";
 import Hamburger from "./Hamburger.astro";
+import LoginButton from "./LoginButton";
 import Navigation from "./Navigation.astro";
 import ThemeIcon from "./ThemeIcon.astro";
+const { hideLogin } = Astro.props;
+const isLoggedValue = !!isLogged.get();
+const loggedUsernameValue = loggedUsername.get();
 ---
 
 <nav>
   <Hamburger />
   <ThemeIcon />
+  {hideLogin ? null : 
+    <LoginButton client:load isLogged={isLoggedValue} username={loggedUsernameValue} />
+  }
   <Navigation />
 </nav>

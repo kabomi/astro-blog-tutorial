@@ -1,0 +1,9 @@
+---
+import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import LoginForm from "../components/Login";
+const pageTitle = "Login Page";
+---
+<BaseLayout pageTitle={pageTitle} hideLogin={true}>
+  <LoginForm client:load />
+</BaseLayout>
